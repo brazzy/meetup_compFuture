@@ -12,7 +12,7 @@ public class Exercise1Test {
 
 	private static final String START_URL = "https://de.wikipedia.org/wiki/Java_(Programmiersprache)";
 	private static final String ERROR_URL = "http://localhost:555/";
-	private Downloader testee = new Downloader();
+	private WikiCrawler testee = new WikiCrawler();
 	
 	@Test
 	public void content() throws Exception{
