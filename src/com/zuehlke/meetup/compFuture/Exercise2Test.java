@@ -12,7 +12,14 @@ public class Exercise2Test {
 	private Downloader testee = new Downloader();
 
 	@Test
-	public void extractNextLink(){
+	public void extractNextLinkNoBraces(){
+		String testPage = testee.readFully(getClass().getResourceAsStream("Welt.htm"));
+		String found = testee.extractNextLink(testPage);
+		assertEquals("/wiki/Totalit%C3%A4t", found);
+	}
+	
+	@Test
+	public void extractNextLinkWithBraces(){
 		String testPage = testee.readFully(getClass().getResourceAsStream("Muenchen.htm"));
 		String found = testee.extractNextLink(testPage);
 		assertEquals("/wiki/Landeshauptstadt_(Deutschland)", found);
