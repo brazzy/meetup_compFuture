@@ -1,7 +1,6 @@
 package com.zuehlke.meetup.compFuture;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,13 +14,13 @@ public class Exercise1Test {
 	private WikiCrawler testee = new WikiCrawler();
 	
 	@Test
-	public void content() throws Exception{
+	public void downloadContent() throws Exception{
 		String content = testee.download(START_URL).get();
 		assertThat(content, CoreMatchers.containsString("Java Technology: The Early Years."));
 	}
 
 	@Test
-	public void asynchronous() throws Exception{
+	public void downloadAsynchronous() throws Exception{
 		long start = System.currentTimeMillis();
 		testee.download(START_URL).get();
 		long elapsed = System.currentTimeMillis() - start;
@@ -29,8 +28,16 @@ public class Exercise1Test {
 	}
 
 	@Test
-	public void error() throws Exception{
+	public void downloadError() throws Exception{
 		CompletableFuture<String> result = testee.download(ERROR_URL);
 		assertTrue("Did not complete exceptionally", result.isCompletedExceptionally());
+	}
+	
+	@Test
+	public void getFirstLinkInArticle() throws Exception{
+		CompletableFuture<String> result = testee.getFirstLinkInArticle("Welt");
+		assertEquals("Totalität", result.get());
+		result = testee.getFirstLinkInArticle("München");
+		assertEquals("Oberbayern", result.get());
 	}
 }
