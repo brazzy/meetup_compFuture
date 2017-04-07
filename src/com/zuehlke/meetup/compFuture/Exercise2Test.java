@@ -1,40 +1,39 @@
 package com.zuehlke.meetup.compFuture;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class Exercise2Test {
-	private static final String START_URL = "https://de.wikipedia.org/wiki/Philosophie";
 	private Downloader testee = new Downloader();
 
 	@Test
 	public void extractNextLinkNoBraces(){
-		String testPage = testee.readFully(getClass().getResourceAsStream("Welt.htm"));
+		String testPage = testee.readFully(getClass().getResourceAsStream("Welt"));
 		String found = testee.extractNextLink(testPage);
-		assertEquals("/wiki/Totalit%C3%A4t", found);
+		assertEquals("Totalität", found);
 	}
 	
 	@Test
 	public void extractNextLinkWithBraces(){
-		String testPage = testee.readFully(getClass().getResourceAsStream("Muenchen.htm"));
+		String testPage = testee.readFully(getClass().getResourceAsStream("Muenchen"));
 		String found = testee.extractNextLink(testPage);
-		assertEquals("/wiki/Landeshauptstadt_(Deutschland)", found);
+		assertEquals("Oberbayern", found);
 	}
 	
 	@Test
-	public void buildAbsoluteLink(){
-		String result = testee.buildAbsoluteLink("/wiki/Landeshauptstadt_(Deutschland)");
-		assertEquals("https://de.wikipedia.org/wiki/Landeshauptstadt_(Deutschland)", result);
+	public void getLink(){
+		String result = testee.getLink("Landeshauptstadt_(Deutschland)");
+		assertEquals("https://de.wikipedia.org/wiki/Landeshauptstadt_(Deutschland)?action=raw", result);
 	}
 	
 	@Test
-	public void getCycle(){
-		List<String> result = testee.getCycle(START_URL);
-		assertEquals(Arrays.asList(START_URL,  "https://de.wikipedia.org/wiki/Welt",  "https://de.wikipedia.org/wiki/Totalit%C3%A4t"), result);
+	public void getCycle() throws Exception{
+		List<String> result = testee.getCycle("Revolution");
+		assertEquals(Arrays.asList("Louvre", "Palais du Louvre", "Glaspyramide im Innenhof des Louvre"), result);
 	}
 	
 }

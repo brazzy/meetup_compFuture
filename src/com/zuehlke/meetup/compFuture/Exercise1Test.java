@@ -1,11 +1,12 @@
 package com.zuehlke.meetup.compFuture;
 
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.util.concurrent.CompletableFuture;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class Exercise1Test {
 
