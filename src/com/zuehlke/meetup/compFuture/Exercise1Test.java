@@ -36,12 +36,4 @@ public class Exercise1Test {
         }
         assertTrue("Did not complete exceptionally", result.isCompletedExceptionally());
     }
-
-    @Test
-    public void getFirstLinkInArticle() throws Exception {
-        CompletableFuture<String> result = testee.getFirstLinkInArticle("Welt");
-        assertEquals("Totalit\u00e4t", result.get());
-        result = testee.getFirstLinkInArticle("M\u00fcnchen");
-        assertEquals("Oberbayern", result.get());
-    }
 }
