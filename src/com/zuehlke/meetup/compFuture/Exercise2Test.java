@@ -7,14 +7,14 @@ import java.util.concurrent.CompletableFuture;
 import org.junit.Test;
 
 public class Exercise2Test {
-	private WikiCrawler testee = new WikiCrawler();
+    private WikiCrawler testee = new WikiCrawler();
 
-	@Test
-	public void getFirstLinkInArticle() throws Exception{
-		CompletableFuture<String> result = testee.getFirstLinkInArticle("Welt");
-		assertEquals("Totalität", result.get());
-		result = testee.getFirstLinkInArticle("München");
-		assertEquals("Oberbayern", result.get());
-	}
-	
+    @Test
+    public void getFirstLinkInArticle() throws Exception {
+        CompletableFuture<String> result = testee.getFirstLinkInArticle("Welt");
+        assertEquals("Totalit\u00e4t", result.get());
+        result = testee.getFirstLinkInArticle("M\u00fcnchen");
+        assertEquals("Oberbayern", result.get());
+    }
+
 }
