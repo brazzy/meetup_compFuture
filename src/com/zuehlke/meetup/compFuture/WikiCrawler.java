@@ -11,7 +11,7 @@ public class WikiCrawler {
 	 * Use the API to download the content of an URL and return a nice CompletableFuture.
 	 */
 	public CompletableFuture<String> download(String url) {
-		return null; // TODO
+		return CompletableFuture.failedFuture(new UnsupportedOperationException());
 	}
 
 	/**
